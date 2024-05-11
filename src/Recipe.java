@@ -20,32 +20,32 @@ public abstract class Recipe {
     void createRecipe(String recipeName){
     this.recipeName = recipeName;
     }
-    List<String> getIngredients(){
+    public List<String> getIngredients(){
     return ingredients;
     }
-    void setIngredients(List <String> ingredients){
+    public void setIngredients(List<String> ingredients){
         this.ingredients = ingredients;
     }
-     String getInstructions(){
+     public String getInstructions(){
         return cookingInstructions;
     }
-    void setInstructions(String cookingInstructions){
+    public void setInstructions(String cookingInstructions){
     this.cookingInstructions = cookingInstructions;
     }
     int getServingSize(){
         return servingSize;
     }
-    void setCategories(List<String> categories){
+    public void setCategories(List<String> categories){
         this.categories = categories;
     }
-    List<String> getCategories(){
+    public List<String> getCategories(){
         return categories;
     }
-    void setTags(List<String> tags){
+    public void setTags(List<String> tags){
         this.tags=tags;
     }
 
-    List<String> getTags(){
+    public List<String> getTags(){
         return tags;
     }
     void setAvgRating(float avgRating){
