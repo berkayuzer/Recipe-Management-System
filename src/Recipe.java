@@ -17,7 +17,7 @@ public abstract class Recipe {
         this.tags = tags;
         this.avgRating = avgRating;
     }
-    void createRecipe(String recipeName){
+    public void createRecipe(String recipeName){
     this.recipeName = recipeName;
     }
     public List<String> getIngredients(){
@@ -26,7 +26,7 @@ public abstract class Recipe {
     public void setIngredients(List<String> ingredients){
         this.ingredients = ingredients;
     }
-     public String getInstructions(){
+    public String getInstructions(){
         return cookingInstructions;
     }
     public void setInstructions(String cookingInstructions){
@@ -48,7 +48,7 @@ public abstract class Recipe {
     public List<String> getTags(){
         return tags;
     }
-    void setAvgRating(float avgRating){
+    public void setAvgRating(float avgRating){
         this.avgRating=avgRating;
     }
 }
