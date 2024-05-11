@@ -8,5 +8,6 @@ public abstract class Recipe {
     String recipeName, cookingInstructions;
     int servingSize;
     float avgRating;
+    void createRecipe(){}
 
 }
