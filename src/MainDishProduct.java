@@ -1,4 +1,4 @@
-package src.Creator;
+package src;
 
 import src.Recipe;
 
