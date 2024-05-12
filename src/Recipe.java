@@ -17,9 +17,6 @@ public abstract class Recipe {
         this.tags = tags;
         this.avgRating = avgRating;
     }
-    public void createRecipe(String recipeName){
-    this.recipeName = recipeName;
-    }
     public List<String> getIngredients(){
     return ingredients;
     }
