@@ -14,8 +14,8 @@ public abstract class Recipe {
         this.cookingInstructions = cookingInstructions;
         this.servingSize = servingSize;
         this.categories = categories;
-        this.tags = tags;
         this.avgRating = avgRating;
+        this.tags = tags;
     }
     public List<String> getIngredients(){
     return ingredients;

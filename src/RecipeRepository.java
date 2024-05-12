@@ -5,7 +5,7 @@ import java.util.List;
 
 public class RecipeRepository {
     private List<Recipe> recipes;
-
+    public static String[] tags = {"Vegetarian","Gluten-free","Spicy"};
     public RecipeRepository() {
         this.recipes = new ArrayList<>();
     }
