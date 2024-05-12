@@ -50,4 +50,3 @@ public abstract class Recipe {
     }
     public void setAvgRating(float avgRating){ this.avgRating=avgRating; }
 }
-

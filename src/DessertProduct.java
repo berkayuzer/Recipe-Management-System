@@ -1,7 +1,5 @@
 package src;
 
-import src.Recipe;
-
 import java.util.List;
 
 public class DessertProduct extends Recipe {
