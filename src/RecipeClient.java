@@ -1,6 +1,8 @@
 package src;
 
 import src.Search.CategorySearchStrategy;
+import src.Search.IngredientSearchStrategy;
+import src.Search.TagSearchStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +28,35 @@ public static void main(String[] args){
             2.Tag Search 
             3.Ingredient Search""");
         int searchType = scanner.nextInt();
-        if(searchType == 1){
+        switch (searchType){
+        case 1:
             System.out.print("Enter the Categories: ");
-            search = scanner.next();
-            List<Recipe> CategorySearchStrategy = new CategorySearchStrategy().search(new ArrayList<>(), search);
-            System.out.println(CategorySearchStrategy);
+            search = scanner.nextLine();
+            List<Recipe> categorySearchStrategy = new CategorySearchStrategy().search(new ArrayList<>(), search);
+            displayRecipes(categorySearchStrategy);
+            break;
+            case 2:
+                System.out.print("Enter the Tag: ");
+                search = scanner.nextLine();
+                List<Recipe> tagSearchStratregy = new TagSearchStrategy().search(new ArrayList<>(), search);
+                displayRecipes(tagSearchStratregy);
+                break;
+            case 3:
+                System.out.print("Enter the Ingredient: ");
+                search = scanner.nextLine();
+                List<Recipe> ingredientSearchStratregy = new IngredientSearchStrategy().search(new ArrayList<>(), search);
+                displayRecipes(ingredientSearchStratregy);
         }
     }
+    }
+     static void displayRecipes(List<Recipe> recipes) {
+        if (recipes.isEmpty())
+            System.out.println("No recipes found.");
+        else {
+            System.out.println("Search Results:");
+            for (Recipe recipe : recipes) {
+                System.out.println(recipe);
+            }
+        }
     }
 }

@@ -7,7 +7,7 @@ import src.Recipe;
 
 import java.util.List;
 
-interface RecipeFactory{
+public interface RecipeFactory{
     Recipe createRecipe(List<String> ingredients, String cookingInstructions, int servingSize,
                       List<String> categories, List<String> tags, float avgRating);
 }
