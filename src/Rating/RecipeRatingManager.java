@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RecipeRatingManager {
-    private static RecipeRatingManager instance;
+    private RecipeRatingManager instance;
     private Map<Recipe, Float> recipeRatings;
 
     // Private constructor to prevent instantiation from outside
@@ -14,7 +14,7 @@ public class RecipeRatingManager {
     }
 
     // Method to get the singleton instance
-    public static RecipeRatingManager getInstance() {
+    public RecipeRatingManager getInstance() {
         if (instance == null) {
             instance = new RecipeRatingManager();
         }
@@ -39,6 +39,8 @@ public class RecipeRatingManager {
         if (count == 0) {
             return 0; // No ratings available
         }
-        return sum / count;
+        float avg = sum / count;
+        Recipe.setAvgRating(avg);
+        return avg;
     }
 }

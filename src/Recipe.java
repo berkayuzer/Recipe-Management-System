@@ -48,8 +48,6 @@ public abstract class Recipe {
     public List<String> getTags(){
         return tags;
     }
-    public void setAvgRating(float avgRating){
-        this.avgRating=avgRating;
-    }
+    public void setAvgRating(float avgRating){ this.avgRating=avgRating; }
 }
 
