@@ -40,7 +40,7 @@ public class RecipeRatingManager {
             return 0; // No ratings available
         }
         float avg = sum / count;
-        Recipe.setAvgRating(avg);
+        recipe.setAvgRating(avg);
         return avg;
     }
 }
