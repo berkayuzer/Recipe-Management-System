@@ -1,4 +1,6 @@
-package src;
+package src.Product;
+
+import src.Recipe;
 
 import java.util.List;
 

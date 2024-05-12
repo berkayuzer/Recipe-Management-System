@@ -1,8 +1,8 @@
-package src.Creator;
+package src.Factory;
 
-import src.AppetizerProduct;
-import src.DessertProduct;
-import src.MainDishProduct;
+import src.Product.AppetizerProduct;
+import src.Product.DessertProduct;
+import src.Product.MainDishProduct;
 import src.Recipe;
 
 import java.util.List;
