@@ -1,25 +1,25 @@
 package src.Modification;
 
-import src.Recipe;
+import src.RecipeProduct;
 
 public class ModifyInstructionsCommand implements Command {
-    private Recipe recipe;
+    private RecipeProduct recipeProduct;
     private String oldCookingInstructions;
     private String newCookingInstructions;
 
-    public ModifyInstructionsCommand(Recipe recipe, String newCookingInstructions) {
-        this.recipe = recipe;
+    public ModifyInstructionsCommand(RecipeProduct recipeProduct, String newCookingInstructions) {
+        this.recipeProduct = recipeProduct;
         this.newCookingInstructions = newCookingInstructions;
-        this.oldCookingInstructions = recipe.getInstructions();
+        this.oldCookingInstructions = recipeProduct.getInstructions();
     }
 
     @Override
     public void execute() {
-        recipe.setInstructions(newCookingInstructions);
+        recipeProduct.setInstructions(newCookingInstructions);
     }
 
     @Override
     public void undo() {
-        recipe.setInstructions(oldCookingInstructions);
+        recipeProduct.setInstructions(oldCookingInstructions);
     }
 }

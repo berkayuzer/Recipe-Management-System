@@ -1,27 +1,27 @@
 package src.Modification;
 
-import src.Recipe;
+import src.RecipeProduct;
 
 import java.util.List;
 
 public class ModifyIngredientsCommand implements Command {
-    private Recipe recipe;
+    private RecipeProduct recipeProduct;
     private List<String> oldIngredients;
     private List<String> newIngredients;
 
-    public ModifyIngredientsCommand(Recipe recipe, List<String> newIngredients) {
-        this.recipe = recipe;
+    public ModifyIngredientsCommand(RecipeProduct recipeProduct, List<String> newIngredients) {
+        this.recipeProduct = recipeProduct;
         this.newIngredients = newIngredients;
-        this.oldIngredients = recipe.getIngredients();
+        this.oldIngredients = recipeProduct.getIngredients();
     }
 
     @Override
     public void execute() {
-        recipe.setIngredients(newIngredients);
+        recipeProduct.setIngredients(newIngredients);
     }
 
     @Override
     public void undo() {
-        recipe.setIngredients(oldIngredients);
+        recipeProduct.setIngredients(oldIngredients);
     }
 }

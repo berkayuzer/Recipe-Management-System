@@ -118,22 +118,26 @@ public class RecipeClient {
         if (Objects.equals(save, "Yes")) {
             if (type == 1) {
 
-                RecipeFactory appetizerFactory = new AppetizerFactory();
-                Recipe recipe = new AppetizerProduct(appetizerFactory);
+                RecipeCreator appetizerFactory = new AppetizerFactory();
+                RecipeProduct recipeProduct = new AppetizerProduct(appetizerFactory);
                 AppetizerFactory factory = new AppetizerFactory();
-                Recipe appetizer = factory.createRecipe(recipeName ,ingredients, cookingInstructions, servingSize,selectedCategories, selectedTags,rating);
+
+
+
+
+                RecipeProduct appetizer = factory.createRecipe(recipeName ,ingredients, cookingInstructions, servingSize,selectedCategories, selectedTags,rating);
                 RecipeRepository repository = new RecipeRepository();
                 repository.saveRecipe(appetizer);
                 System.out.println("Recipe saved successfully.");
             } else if (type == 2) {
                 MainDishFactory factory = new MainDishFactory();
-                Recipe mainDish = factory.createRecipe(recipeName ,ingredients, cookingInstructions, servingSize, selectedCategories, selectedTags, rating);
+                RecipeProduct mainDish = factory.createRecipe(recipeName ,ingredients, cookingInstructions, servingSize, selectedCategories, selectedTags, rating);
                 RecipeRepository repository = new RecipeRepository();
                 repository.saveRecipe(mainDish);
                 System.out.println("Recipe saved successfully.");
             } else if (type == 3) {
                 DessertFactory factory = new DessertFactory();
-                Recipe dessert = factory.createRecipe(recipeName, ingredients, cookingInstructions, servingSize, selectedCategories, selectedTags, 1.0f);
+                RecipeProduct dessert = factory.createRecipe(recipeName, ingredients, cookingInstructions, servingSize, selectedCategories, selectedTags, 1.0f);
                 RecipeRepository repository = new RecipeRepository();
                 repository.saveRecipe(dessert);
                 System.out.println("Recipe saved successfully.");
@@ -153,19 +157,19 @@ public class RecipeClient {
             case 1:
                 System.out.print("Enter the Categories: ");
                 search = scanner.nextLine();
-                List<Recipe> categorySearchStrategy = new CategorySearchStrategy().search(new RecipeRepository().getAllRecipes(), search);
+                List<RecipeProduct> categorySearchStrategy = new CategorySearchStrategy().search(new RecipeRepository().getAllRecipes(), search);
                 displayRecipes(categorySearchStrategy);
                 break;
             case 2:
                 System.out.print("Enter the Tag: ");
                 search = scanner.nextLine();
-                List<Recipe> tagSearchStratregy = new TagSearchStrategy().search(new RecipeRepository().getAllRecipes(), search);
+                List<RecipeProduct> tagSearchStratregy = new TagSearchStrategy().search(new RecipeRepository().getAllRecipes(), search);
                 displayRecipes(tagSearchStratregy);
                 break;
             case 3:
                 System.out.print("Enter the Ingredient: ");
                 search = scanner.nextLine();
-                List<Recipe> ingredientSearchStratregy = new IngredientSearchStrategy().search(new RecipeRepository().getAllRecipes(), search);
+                List<RecipeProduct> ingredientSearchStratregy = new IngredientSearchStrategy().search(new RecipeRepository().getAllRecipes(), search);
                 displayRecipes(ingredientSearchStratregy);
         }
     }
@@ -174,12 +178,12 @@ public class RecipeClient {
         RecipeRatingManager recipeRatingManager =  RecipeRatingManager.getInstance();
 
     }
-    static void displayRecipes (List < Recipe > recipes) {
-        if (recipes.isEmpty()) System.out.println("No recipes found.");
+    static void displayRecipes (List <RecipeProduct> recipeProducts) {
+        if (recipeProducts.isEmpty()) System.out.println("No recipes found.");
         else {
             System.out.println("Search Results:");
-            for (Recipe recipe : recipes) {
-                System.out.println(recipe);
+            for (RecipeProduct recipeProduct : recipeProducts) {
+                System.out.println(recipeProduct);
             }
         }
     }

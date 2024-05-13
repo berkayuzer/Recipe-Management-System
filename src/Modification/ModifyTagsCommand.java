@@ -1,28 +1,28 @@
 package src.Modification;
 
-import src.Recipe;
+import src.RecipeProduct;
 
 import java.util.List;
 
 public class ModifyTagsCommand implements Command{
-    private Recipe recipe;
+    private RecipeProduct recipeProduct;
     private List<String> oldTags;
     private List<String> newTags;
 
-    public ModifyTagsCommand(Recipe recipe, List<String> newTags) {
-        this.recipe = recipe;
+    public ModifyTagsCommand(RecipeProduct recipeProduct, List<String> newTags) {
+        this.recipeProduct = recipeProduct;
         this.newTags = newTags;
-        this.oldTags = recipe.getTags();
+        this.oldTags = recipeProduct.getTags();
     }
 
     @Override
     public void execute() {
-        recipe.setTags(newTags);
+        recipeProduct.setTags(newTags);
     }
 
     @Override
     public void undo() {
-        recipe.setTags(oldTags);
+        recipeProduct.setTags(oldTags);
     }
 
 }

@@ -1,23 +1,22 @@
 package src;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.SplittableRandom;
 
-public abstract class Recipe {
+public abstract class RecipeProduct {
     List<String> categories, tags, ingredients;
     String name, cookingInstructions;
     int servingSize;
     float avgRating;
-//    public Recipe(String name, List<String> ingredients, String cookingInstructions, int servingSize, List<String> categories, List<String> tags, float avgRating) {
-//        this.name = name;
-//        this.ingredients = ingredients;
-//        this.cookingInstructions = cookingInstructions;
-//        this.servingSize = servingSize;
-//        this.categories = categories;
-//        this.avgRating = avgRating;
-//        this.tags = tags;
-//    }
+
+    public RecipeProduct(String name, List<String> ingredients, String cookingInstructions, int servingSize, List<String> categories, List<String> tags, float avgRating) {
+        this.name = name;
+        this.ingredients = ingredients;
+        this.cookingInstructions = cookingInstructions;
+        this.servingSize = servingSize;
+        this.categories = categories;
+        this.avgRating = avgRating;
+        this.tags = tags;
+    }
     public List<String> getIngredients(){
     return ingredients;
     }
