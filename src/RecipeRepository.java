@@ -6,6 +6,9 @@ import java.util.List;
 public class RecipeRepository {
     private List<Recipe> recipes;
     public static String[] tags = {"Vegetarian","Gluten-free","Spicy"};
+    public static String[] appetizerCategories = {"Cocktail","Canepe","Chips and Dip", "Fruit"};
+    public static String[] mainDishCategories = {"Meat","Chicken","Pork","Seafood","Vegetarian", "Pasta"};
+    public static String[] dessertCategories = {"Cake","Pie","Cookies","Ice Cream","Candy"};
     public RecipeRepository() {
         this.recipes = new ArrayList<>();
     }
