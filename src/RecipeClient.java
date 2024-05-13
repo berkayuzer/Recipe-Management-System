@@ -1,5 +1,9 @@
 package src;
 
+import src.Factory.AppetizerFactory;
+import src.Factory.DessertFactory;
+import src.Factory.MainDishFactory;
+import src.Factory.RecipeFactory;
 import src.Rating.RecipeRatingManager;
 import src.Search.CategorySearchStrategy;
 import java.util.*;
@@ -28,6 +32,7 @@ public class RecipeClient {
         int type = scanner.nextInt();
         System.out.println("Enter the recipe name:");
         String recipeName = scanner.nextLine();
+        scanner.nextLine();
 
         // Initialize an ArrayList to store ingredients
         ArrayList<String> ingredients = new ArrayList<>();
@@ -63,8 +68,23 @@ public class RecipeClient {
         String save = scanner.nextLine();
         if (Objects.equals(save, "Yes")) {
             if (type == 1) {
-                //Buradan devam edicem !!!!!!!!!! -İrem
-                // RecipeFactory appetizer = new AppetizerProduct(ingredients, cookingInstructions, servingSize, );
+                AppetizerFactory factory = new AppetizerFactory();
+                Recipe appetizer = factory.createRecipe(ingredients, cookingInstructions, servingSize,);
+                RecipeRepository repository = new RecipeRepository();
+                repository.saveRecipe(appetizer);
+                System.out.println("Recipe saved successfully.");
+            } else if (type == 2) {
+                MainDishFactory factory = new MainDishFactory();
+                Recipe mainDish = factory.createRecipe(ingredients, cookingInstructions, servingSize, categories, tags)
+                RecipeRepository repository = new RecipeRepository();
+                repository.saveRecipe(mainDish);
+                System.out.println("Recipe saved successfully.");
+            } else if (type == 3) {
+                DessertFactory factory = new DessertFactory();
+                Recipe dessert = factory.createRecipe(ingredients, cookingInstructions, servingSize, categories, tags);
+                RecipeRepository repository = new RecipeRepository();
+                repository.saveRecipe(dessert);
+                System.out.println("Recipe saved successfully.");
             }
         }
     }
@@ -81,19 +101,19 @@ public class RecipeClient {
             case 1:
                 System.out.print("Enter the Categories: ");
                 search = scanner.nextLine();
-                List<Recipe> categorySearchStrategy = new CategorySearchStrategy().search(new ArrayList<>(), search);
+                List<Recipe> categorySearchStrategy = new CategorySearchStrategy().search(new RecipeRepository().getAllRecipes(), search);
                 displayRecipes(categorySearchStrategy);
                 break;
             case 2:
                 System.out.print("Enter the Tag: ");
                 search = scanner.nextLine();
-                List<Recipe> tagSearchStratregy = new TagSearchStrategy().search(new ArrayList<>(), search);
+                List<Recipe> tagSearchStratregy = new TagSearchStrategy().search(new RecipeRepository().getAllRecipes(), search);
                 displayRecipes(tagSearchStratregy);
                 break;
             case 3:
                 System.out.print("Enter the Ingredient: ");
                 search = scanner.nextLine();
-                List<Recipe> ingredientSearchStratregy = new IngredientSearchStrategy().search(new ArrayList<>(), search);
+                List<Recipe> ingredientSearchStratregy = new IngredientSearchStrategy().search(new RecipeRepository().getAllRecipes(), search);
                 displayRecipes(ingredientSearchStratregy);
         }
     }
