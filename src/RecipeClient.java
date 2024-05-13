@@ -66,6 +66,8 @@ public class RecipeClient {
         int tags = scanner.nextInt(); //Burada tagleri nasıl alacağınızı bulmanız lazım
         System.out.println("Do you want to save this recipe: (Yes or No)");
         String save = scanner.nextLine();
+        List<String> categories = new ArrayList<>();
+        List<String> tag = new ArrayList<>();
         if (Objects.equals(save, "Yes")) {
             if (type == 1) {
                 AppetizerFactory factory = new AppetizerFactory();
@@ -75,13 +77,13 @@ public class RecipeClient {
                 System.out.println("Recipe saved successfully.");
             } else if (type == 2) {
                 MainDishFactory factory = new MainDishFactory();
-                Recipe mainDish = factory.createRecipe(ingredients, cookingInstructions, servingSize, categories, tags)
+                Recipe mainDish = factory.createRecipe(ingredients, cookingInstructions, servingSize, categories, tag, 1.0f);
                 RecipeRepository repository = new RecipeRepository();
                 repository.saveRecipe(mainDish);
                 System.out.println("Recipe saved successfully.");
             } else if (type == 3) {
                 DessertFactory factory = new DessertFactory();
-                Recipe dessert = factory.createRecipe(ingredients, cookingInstructions, servingSize, categories, tags);
+                Recipe dessert = factory.createRecipe(ingredients, cookingInstructions, servingSize, categories, tag, 1.0f);
                 RecipeRepository repository = new RecipeRepository();
                 repository.saveRecipe(dessert);
                 System.out.println("Recipe saved successfully.");
