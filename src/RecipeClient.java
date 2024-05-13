@@ -71,7 +71,7 @@ public class RecipeClient {
         if (Objects.equals(save, "Yes")) {
             if (type == 1) {
                 AppetizerFactory factory = new AppetizerFactory();
-                Recipe appetizer = factory.createRecipe(ingredients, cookingInstructions, servingSize,);
+                Recipe appetizer = factory.createRecipe(ingredients, cookingInstructions, servingSize,categories, tag, 1.0f);
                 RecipeRepository repository = new RecipeRepository();
                 repository.saveRecipe(appetizer);
                 System.out.println("Recipe saved successfully.");
