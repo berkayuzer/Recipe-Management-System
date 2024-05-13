@@ -26,16 +26,6 @@ public class RecipeClient {
             case 3: modifyRecipe(); break;
             case 4: rateRecipe(); break;
         }
-
-        ArrayList<String> ingredients = new ArrayList<>( Arrays.asList("ingredient1", "ingredient2", "ingredient3"));
-        List<String> categories = new ArrayList<>(Arrays.asList("category1", "category2", "category3"));
-        List<String> tags = new ArrayList<>(Arrays.asList("tag1", "tag2", "tag3"));
-
-
-        AppetizerFactory appetizerFactory = new AppetizerFactory();
-        Recipe tarif1 = appetizerFactory.createRecipe("pasta", ingredients, "cookingInstructions", 4, categories, tags, 4.5f);
-        RecipeRepository recipeRepository = new RecipeRepository();
-        recipeRepository.saveRecipe(tarif1);
     }
     static void createRecipe(){
         System.out.println("Create Recipe Menu");
@@ -50,15 +40,16 @@ public class RecipeClient {
         // Prompt user to enter ingredients
         System.out.println("Enter the ingredients (enter 'done' when finished):");
         while (true) {
-            String ingredient = scanner.next();
+            String ingredient = scanner.nextLine();
             if (ingredient.equalsIgnoreCase("done")) {
                 break;
             }
-            ingredients.add(ingredient);
+            if (!ingredient.isEmpty())
+                ingredients.add(ingredient);
         }
         // Prompt user to enter cooking instructions
         System.out.println("Enter the cooking instructions:");
-        String cookingInstructions = scanner.next();
+        String cookingInstructions = scanner.nextLine();
 
         System.out.println("Enter the serving size:");
         int servingSize = scanner.nextInt();
@@ -72,28 +63,77 @@ public class RecipeClient {
         }
         System.out.println("Cooking Instructions:");
         System.out.println(cookingInstructions);
-        System.out.println("Choose from tags you want to add:" + Arrays.toString(RecipeRepository.tags));
-        int tags = scanner.nextInt(); //Burada tagleri nasıl alacağınızı bulmanız lazım
+        String[] categoryList= null;
+        switch (type){
+            case 1: categoryList = RecipeRepository.appetizerCategories;
+                break;
+            case 2: categoryList = RecipeRepository.mainDishCategories; break;
+            case 3: categoryList = RecipeRepository.dessertCategories; break;
+        }
+        System.out.println("Choose from category you want to add (enter 'done' when finished):" + Arrays.toString(categoryList));
+
+        ArrayList<String> selectedCategories = new ArrayList<>();
+        while (selectedCategories.size() < 3) {
+            String category = scanner.next();
+            if (category.equalsIgnoreCase("done")) {
+                break;
+            }
+            boolean categoryFound = false;
+            for (String element : categoryList) {
+                if (element.equals(category)) {
+                    selectedCategories.add(category);
+                    categoryFound = true;
+                    break;
+                }
+            }
+            if (!categoryFound){
+                System.out.println("Warning: Category '" + category + "' not found in the array. Please enter another category:");
+            }
+        }
+        System.out.println("The categories you chose: "+ selectedCategories);
+
+        System.out.println("Choose from tags you want to add (enter 'done' when finished):" + Arrays.toString(RecipeRepository.tags));
+        ArrayList<String> selectedTags = new ArrayList<>();
+        while (selectedTags.size() < 3) {
+            String tag = scanner.next();
+            if (tag.equalsIgnoreCase("done")) {
+                break;
+            }
+            boolean tagFound = false;
+            for (String element : RecipeRepository.tags) {
+                if (element.equals(tag)) {
+                    selectedTags.add(tag);
+                    tagFound = true;
+                    break;
+                }
+            }
+            if (!tagFound){
+                System.out.println("Warning: Tag '" + tag + "' not found in the array. Please enter another tag:");
+            }
+        }
+        System.out.println("The tags you chose: "+ selectedTags);
+        float rating =0;
         System.out.println("Do you want to save this recipe: (Yes or No)");
-        String save = scanner.nextLine();
-        List<String> categories = new ArrayList<>();
-        List<String> tag = new ArrayList<>();
+        String save = scanner.next();
         if (Objects.equals(save, "Yes")) {
             if (type == 1) {
+
+                RecipeFactory appetizerFactory = new AppetizerFactory();
+                Recipe recipe = new AppetizerProduct(appetizerFactory);
                 AppetizerFactory factory = new AppetizerFactory();
-                Recipe appetizer = factory.createRecipe(recipeName, ingredients, cookingInstructions, servingSize,categories, tag, 1.0f);
+                Recipe appetizer = factory.createRecipe(recipeName ,ingredients, cookingInstructions, servingSize,selectedCategories, selectedTags,rating);
                 RecipeRepository repository = new RecipeRepository();
                 repository.saveRecipe(appetizer);
                 System.out.println("Recipe saved successfully.");
             } else if (type == 2) {
                 MainDishFactory factory = new MainDishFactory();
-                Recipe mainDish = factory.createRecipe(recipeName, ingredients, cookingInstructions, servingSize, categories, tag, 1.0f);
+                Recipe mainDish = factory.createRecipe(recipeName ,ingredients, cookingInstructions, servingSize, selectedCategories, selectedTags, rating);
                 RecipeRepository repository = new RecipeRepository();
                 repository.saveRecipe(mainDish);
                 System.out.println("Recipe saved successfully.");
             } else if (type == 3) {
                 DessertFactory factory = new DessertFactory();
-                Recipe dessert = factory.createRecipe(recipeName, ingredients, cookingInstructions, servingSize, categories, tag, 1.0f);
+                Recipe dessert = factory.createRecipe(recipeName, ingredients, cookingInstructions, servingSize, selectedCategories, selectedTags, 1.0f);
                 RecipeRepository repository = new RecipeRepository();
                 repository.saveRecipe(dessert);
                 System.out.println("Recipe saved successfully.");

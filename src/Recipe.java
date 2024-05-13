@@ -9,15 +9,15 @@ public abstract class Recipe {
     String name, cookingInstructions;
     int servingSize;
     float avgRating;
-    public Recipe(String name, List<String> ingredients, String cookingInstructions, int servingSize, List<String> categories, List<String> tags, float avgRating) {
-        this.name = name;
-        this.ingredients = ingredients;
-        this.cookingInstructions = cookingInstructions;
-        this.servingSize = servingSize;
-        this.categories = categories;
-        this.avgRating = avgRating;
-        this.tags = tags;
-    }
+//    public Recipe(String name, List<String> ingredients, String cookingInstructions, int servingSize, List<String> categories, List<String> tags, float avgRating) {
+//        this.name = name;
+//        this.ingredients = ingredients;
+//        this.cookingInstructions = cookingInstructions;
+//        this.servingSize = servingSize;
+//        this.categories = categories;
+//        this.avgRating = avgRating;
+//        this.tags = tags;
+//    }
     public List<String> getIngredients(){
     return ingredients;
     }

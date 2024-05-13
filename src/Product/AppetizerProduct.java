@@ -1,13 +1,17 @@
 package src.Product;
 
+import src.Factory.AppetizerFactory;
+import src.Factory.RecipeFactory;
 import src.Recipe;
 
 import java.util.List;
 
 public class AppetizerProduct extends Recipe {
+RecipeFactory appetizerFactory ;
+    public AppetizerProduct(RecipeFactory appetizerFactory) {
+        super();
+        this.appetizerFactory = appetizerFactory;
 
-    public AppetizerProduct(String name, List<String> ingredients, String cookingInstructions, int servingSize, List<String> categories, List<String> tags, float avgRating) {
-        super(name, ingredients, cookingInstructions, servingSize, categories, tags, avgRating);
     }
 
 }
