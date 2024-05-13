@@ -6,10 +6,11 @@ import java.util.SplittableRandom;
 
 public abstract class Recipe {
     List<String> categories, tags, ingredients;
-    String recipeName, cookingInstructions;
+    String name, cookingInstructions;
     int servingSize;
     float avgRating;
-    public Recipe(List<String> ingredients, String cookingInstructions, int servingSize, List<String> categories, List<String> tags, float avgRating) {
+    public Recipe(String name, List<String> ingredients, String cookingInstructions, int servingSize, List<String> categories, List<String> tags, float avgRating) {
+        this.name = name;
         this.ingredients = ingredients;
         this.cookingInstructions = cookingInstructions;
         this.servingSize = servingSize;
@@ -23,6 +24,15 @@ public abstract class Recipe {
     public void setIngredients(List<String> ingredients){
         this.ingredients = ingredients;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getInstructions(){
         return cookingInstructions;
     }

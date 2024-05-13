@@ -4,6 +4,7 @@ import src.Factory.AppetizerFactory;
 import src.Factory.DessertFactory;
 import src.Factory.MainDishFactory;
 import src.Factory.RecipeFactory;
+import src.Product.AppetizerProduct;
 import src.Rating.RecipeRatingManager;
 import src.Search.CategorySearchStrategy;
 import java.util.*;
@@ -25,14 +26,23 @@ public class RecipeClient {
             case 3: modifyRecipe(); break;
             case 4: rateRecipe(); break;
         }
+
+        ArrayList<String> ingredients = new ArrayList<>( Arrays.asList("ingredient1", "ingredient2", "ingredient3"));
+        List<String> categories = new ArrayList<>(Arrays.asList("category1", "category2", "category3"));
+        List<String> tags = new ArrayList<>(Arrays.asList("tag1", "tag2", "tag3"));
+
+
+        AppetizerFactory appetizerFactory = new AppetizerFactory();
+        Recipe tarif1 = appetizerFactory.createRecipe("pasta", ingredients, "cookingInstructions", 4, categories, tags, 4.5f);
+        RecipeRepository recipeRepository = new RecipeRepository();
+        recipeRepository.saveRecipe(tarif1);
     }
     static void createRecipe(){
         System.out.println("Create Recipe Menu");
         System.out.println("Which type of recipe do you want to add:\n" + "1.Appetizer\n" + "2.Main Dish\n" + "3.Dessert");
         int type = scanner.nextInt();
         System.out.println("Enter the recipe name:");
-        String recipeName = scanner.nextLine();
-        scanner.nextLine();
+        String recipeName = scanner.next();
 
         // Initialize an ArrayList to store ingredients
         ArrayList<String> ingredients = new ArrayList<>();
@@ -40,7 +50,7 @@ public class RecipeClient {
         // Prompt user to enter ingredients
         System.out.println("Enter the ingredients (enter 'done' when finished):");
         while (true) {
-            String ingredient = scanner.nextLine();
+            String ingredient = scanner.next();
             if (ingredient.equalsIgnoreCase("done")) {
                 break;
             }
@@ -48,7 +58,7 @@ public class RecipeClient {
         }
         // Prompt user to enter cooking instructions
         System.out.println("Enter the cooking instructions:");
-        String cookingInstructions = scanner.nextLine();
+        String cookingInstructions = scanner.next();
 
         System.out.println("Enter the serving size:");
         int servingSize = scanner.nextInt();
@@ -71,19 +81,19 @@ public class RecipeClient {
         if (Objects.equals(save, "Yes")) {
             if (type == 1) {
                 AppetizerFactory factory = new AppetizerFactory();
-                Recipe appetizer = factory.createRecipe(ingredients, cookingInstructions, servingSize,categories, tag, 1.0f);
+                Recipe appetizer = factory.createRecipe(recipeName, ingredients, cookingInstructions, servingSize,categories, tag, 1.0f);
                 RecipeRepository repository = new RecipeRepository();
                 repository.saveRecipe(appetizer);
                 System.out.println("Recipe saved successfully.");
             } else if (type == 2) {
                 MainDishFactory factory = new MainDishFactory();
-                Recipe mainDish = factory.createRecipe(ingredients, cookingInstructions, servingSize, categories, tag, 1.0f);
+                Recipe mainDish = factory.createRecipe(recipeName, ingredients, cookingInstructions, servingSize, categories, tag, 1.0f);
                 RecipeRepository repository = new RecipeRepository();
                 repository.saveRecipe(mainDish);
                 System.out.println("Recipe saved successfully.");
             } else if (type == 3) {
                 DessertFactory factory = new DessertFactory();
-                Recipe dessert = factory.createRecipe(ingredients, cookingInstructions, servingSize, categories, tag, 1.0f);
+                Recipe dessert = factory.createRecipe(recipeName, ingredients, cookingInstructions, servingSize, categories, tag, 1.0f);
                 RecipeRepository repository = new RecipeRepository();
                 repository.saveRecipe(dessert);
                 System.out.println("Recipe saved successfully.");
